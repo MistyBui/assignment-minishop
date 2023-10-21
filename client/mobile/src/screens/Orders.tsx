@@ -1,4 +1,4 @@
-import type { GetOrdersQuery } from '../../../generated/graphql';
+import type { GetOrdersQuery } from '../../../../server/src/generated/graphql';
 
 import React, { FC } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';

@@ -22,3 +22,11 @@ type Query {
   products: [Product!]!
   orders(customerId: ID!): [Order!]!
 }
+
+type GetProductsQuery {
+  products: [Product!]!
+}
+
+type GetOrdersQuery {
+  orders(customerId: ID!): [Order!]!
+}

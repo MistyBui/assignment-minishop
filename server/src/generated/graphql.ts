@@ -16,6 +16,21 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
+export type GetOrdersQuery = {
+  __typename?: 'GetOrdersQuery';
+  orders: Array<Order>;
+};
+
+
+export type GetOrdersQueryOrdersArgs = {
+  customerId: Scalars['ID']['input'];
+};
+
+export type GetProductsQuery = {
+  __typename?: 'GetProductsQuery';
+  products: Array<Product>;
+};
+
 export type Order = {
   __typename?: 'Order';
   customerId: Scalars['String']['output'];
@@ -123,6 +138,8 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 export type ResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
   Float: ResolverTypeWrapper<Scalars['Float']['output']>;
+  GetOrdersQuery: ResolverTypeWrapper<GetOrdersQuery>;
+  GetProductsQuery: ResolverTypeWrapper<GetProductsQuery>;
   ID: ResolverTypeWrapper<Scalars['ID']['output']>;
   Int: ResolverTypeWrapper<Scalars['Int']['output']>;
   Order: ResolverTypeWrapper<Order>;
@@ -136,6 +153,8 @@ export type ResolversTypes = {
 export type ResolversParentTypes = {
   Boolean: Scalars['Boolean']['output'];
   Float: Scalars['Float']['output'];
+  GetOrdersQuery: GetOrdersQuery;
+  GetProductsQuery: GetProductsQuery;
   ID: Scalars['ID']['output'];
   Int: Scalars['Int']['output'];
   Order: Order;
@@ -143,6 +162,16 @@ export type ResolversParentTypes = {
   Product: Product;
   Query: {};
   String: Scalars['String']['output'];
+};
+
+export type GetOrdersQueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['GetOrdersQuery'] = ResolversParentTypes['GetOrdersQuery']> = {
+  orders?: Resolver<Array<ResolversTypes['Order']>, ParentType, ContextType, RequireFields<GetOrdersQueryOrdersArgs, 'customerId'>>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type GetProductsQueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['GetProductsQuery'] = ResolversParentTypes['GetProductsQuery']> = {
+  products?: Resolver<Array<ResolversTypes['Product']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type OrderResolvers<ContextType = any, ParentType extends ResolversParentTypes['Order'] = ResolversParentTypes['Order']> = {
@@ -174,6 +203,8 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
 };
 
 export type Resolvers<ContextType = any> = {
+  GetOrdersQuery?: GetOrdersQueryResolvers<ContextType>;
+  GetProductsQuery?: GetProductsQueryResolvers<ContextType>;
   Order?: OrderResolvers<ContextType>;
   OrderedProduct?: OrderedProductResolvers<ContextType>;
   Product?: ProductResolvers<ContextType>;

@@ -1,4 +1,4 @@
-import type { GetProductsQuery } from '../../../generated/graphql';
+import type { GetProductsQuery } from '../../../../server/src/generated/graphql';
 
 import React, { FC } from 'react';
 import {
