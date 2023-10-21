@@ -1,46 +1,47 @@
-import type { GetOrdersQuery } from '../../../generated/graphql';
-
 import React, { FC } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useQuery } from '@apollo/client';
+import styled from 'styled-components';
 
-import Header from '../components/Header';
 import OrderSummary from '../components/OrderSummary';
 import { OrderCard } from '../types';
+import Header from '../components/Header';
 import { ordersQuery } from '../queries';
-import { ORDERS } from '../constants';
 
 const Orders: FC = (): JSX.Element => {
-  const { loading, data } = useQuery<GetOrdersQuery>(ordersQuery, {
+  const { loading, data } = useQuery(ordersQuery, {
     variables: { customerId: 'customer-1' },
   });
 
   return (
-    <View style={styles.wrapper}>
-      <Header>{ORDERS}</Header>
-      <ScrollView>
+    <BodyContainer>
+      <Header />
+      <CardsContainer>
+        <h2>My order history</h2>
         {loading ? (
-          <Text>Loading orders...</Text>
+          <p>Loading orders...</p>
         ) : (
           data?.orders.map((order: OrderCard) => (
             <OrderSummary
               key={order.orderId}
-              orderId={order.orderId}
               timestamp={order.timestamp}
               totalSum={order.totalSum}
+              orderId={order.orderId}
             />
           ))
         )}
-      </ScrollView>
-    </View>
+      </CardsContainer>
+    </BodyContainer>
   );
 };
 
-const styles = StyleSheet.create({
-  wrapper: {
-    padding: 16,
-    paddingTop: 48,
-  },
-});
-
 export default Orders;
+
+const CardsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const BodyContainer = styled.div`
+  margin: 50px;
+`;

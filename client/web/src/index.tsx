@@ -1,14 +1,16 @@
-import React from "react";
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { loadErrorMessages, loadDevMessages } from '@apollo/client/dev';
 
-import { createRoot } from "react-dom/client";
-import { Store } from "./Store";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Orders } from "./Orders";
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
-import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
+import OrderDetails from './screens/OrderDetails';
+import Orders from './screens/Orders';
+import Store from './screens/Products';
+import { CartProvider } from './context';
 
 const gqlClient = new ApolloClient({
-  uri: "http://localhost:4000",
+  uri: 'http://localhost:4000',
 
   cache: new InMemoryCache(),
 });
@@ -17,19 +19,25 @@ loadErrorMessages();
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <Store />,
   },
   {
-    path: "orders/",
+    path: 'orders/',
     element: <Orders />,
+  },
+  {
+    path: 'order-details/',
+    element: <OrderDetails />,
   },
 ]);
 
-const container = document.getElementById("app");
+const container = document.getElementById('app');
 const root = createRoot(container);
 root.render(
   <ApolloProvider client={gqlClient}>
-    <RouterProvider router={router} />
-  </ApolloProvider>
+    <CartProvider>
+      <RouterProvider router={router} />
+    </CartProvider>
+  </ApolloProvider>,
 );

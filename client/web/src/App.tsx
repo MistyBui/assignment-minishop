@@ -1,11 +1,13 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { FC } from 'react';
+import { Link } from 'react-router-dom';
 
-export function App() {
+const App: FC = (): JSX.Element => {
   return (
     <>
       <h1>Minishop</h1>
-      <Link to="/orders">My orders</Link>
+      <Link to='/orders'>My orders</Link>
     </>
   );
-}
+};
+
+export default App;

@@ -4,8 +4,19 @@ import { products } from "./productDatabase.js";
 
 export const queries: QueryResolvers = {
   orders: async (_parent, _args, _context) => {
-    // TODO: Calulate sum, only return orders for requested user
-    return orders.map((order) => ({ ...order, totalSum: 0 }));
+    const userOrders = orders.filter((order) => order.customerId === _args.customerId);
+    // Calculate totalSum for each order
+    const ordersWithTotalSum = userOrders.map((order) => ({
+      ...order,
+      totalSum: order.products.reduce((sum, product) => {
+        const productInfo = products.find((p) => p.ean === product.ean);
+        if (productInfo) {
+          return sum + productInfo.price * product.amount;
+        }
+        return sum;
+      }, 0),
+    }));
+    return ordersWithTotalSum;
   },
   products: async (_parent, _args, _context) => {
     return products;
