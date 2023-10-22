@@ -1,11 +1,16 @@
 import React, { PropsWithChildren } from 'react';
 import { Button, Text, StyleSheet, View } from 'react-native';
 
-import { useNavigation, useRoute } from '@react-navigation/native';
+import {
+  NavigationProp,
+  useNavigation,
+  useRoute,
+} from '@react-navigation/native';
 import { PRODUCTS } from '../constants';
+import { RootStackParamList } from 'App';
 
 const Header = ({ children }: PropsWithChildren): JSX.Element => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const route = useRoute();
 
   const currentScreenName = route.name;

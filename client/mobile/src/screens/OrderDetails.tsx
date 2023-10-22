@@ -58,7 +58,7 @@ const OrderDatails: FC = (): JSX.Element => {
     <View style={styles.wrapper}>
       <Header>{ORDER_CONFIRMATION}</Header>
       {cart.length === 0 ? (
-        <Text>No orders</Text>
+        <Text style={styles.text}>No orders</Text>
       ) : (
         <View style={styles.body}>
           <View style={styles.tableHeader}>
@@ -135,6 +135,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 10,
     bottom: -5,
+  },
+  text: {
+    marginStart: 10,
   },
 });
 

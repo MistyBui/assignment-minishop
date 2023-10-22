@@ -17,13 +17,12 @@ import { CartItem, Product } from 'types';
 import { ORDERS, ORDER_DETAILS, PRODUCTS } from '../constants';
 import { useCart } from '../context';
 import { getProductsQuery } from '../queries';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { RootStackParamList } from 'App';
 
-//There is another option to use useNavigation but I want to avoid installing too many packages (react-navigation)
-interface Props {
-  navigation: any;
-}
+const Products: FC = (): JSX.Element => {
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
-const Products: FC<Props> = ({ navigation }): JSX.Element => {
   const { loading, data } = useQuery<GetProductsQuery>(getProductsQuery);
   const { cart } = useCart();
 
