@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Orders Screen renders loading state initially 1`] = `
+<View
+  style={
+    {
+      "padding": 16,
+      "paddingTop": 48,
+    }
+  }
+>
+  <View
+    style={
+      {
+        "marginBottom": 16,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "fontSize": 32,
+          "marginStart": 10,
+        }
+      }
+    >
+      Orders
+    </Text>
+  </View>
+  <RCTScrollView>
+    <View>
+      <Text>
+        Loading orders...
+      </Text>
+    </View>
+  </RCTScrollView>
+</View>
+`;
+
+exports[`Orders Screen renders orders when data is loaded 1`] = `null`;

@@ -6,8 +6,8 @@ Make sure you have completed the [React Native - Environment Setup](https://reac
 
 Also confirm your **XCode** is up-to-date.
 
-1. `npm install`
-2. `cd ios && pod install && cd -`
+1. `yarn install`
+2. `cd ios && pod install && cd..`
 
 ## Step 1: Start the Metro Server
 
@@ -22,13 +22,18 @@ Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _roo
 ### For Android
 
 ```bash
-npm run android
+yarn run android
 ```
 
 ### For iOS
 
 ```bash
-npm run ios
+yarn run ios
+```
+### Testing
+
+```bash
+yarn test
 ```
 
 If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.

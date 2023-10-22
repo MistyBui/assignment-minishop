@@ -1,29 +1,35 @@
-import React, { PropsWithChildren } from 'react';
+import React, { PropsWithChildren, useCallback, useState } from 'react';
 import { Button, Text, StyleSheet, View } from 'react-native';
 
-import {
-  NavigationProp,
-  useNavigation,
-  useRoute,
-} from '@react-navigation/native';
 import { PRODUCTS } from '../constants';
-import { RootStackParamList } from 'App';
+import { navigationRef } from '../App';
+import { useFocusEffect } from '@react-navigation/native';
 
 const Header = ({ children }: PropsWithChildren): JSX.Element => {
-  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
-  const route = useRoute();
+  const [currentScreenName, setCurrentScreenName] = useState<string | null>(
+    null,
+  );
 
-  const currentScreenName = route.name;
+  //set route name everytime the component is called
+  useFocusEffect(
+    useCallback(() => {
+      const route = navigationRef.current?.getCurrentRoute();
+      setCurrentScreenName(route?.name || null);
+    }, []),
+  );
 
   const renderBackButton = (): JSX.Element => (
     <View style={styles.goBack}>
-      <Button title={'< Back'} onPress={() => navigation.goBack()} />
+      <Button
+        title={'< Back'}
+        onPress={() => navigationRef.current?.goBack()}
+      />
     </View>
   );
 
   return (
     <View style={styles.headerWrapper}>
-      {navigation.canGoBack() &&
+      {navigationRef.current?.canGoBack() &&
         currentScreenName !== PRODUCTS && //The back button show at the front page after navigate from OrderDetails page
         renderBackButton()}
       <Text style={styles.header}>{children}</Text>

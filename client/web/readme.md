@@ -11,14 +11,20 @@ Requirements: [Node.js](https://nodejs.org) 16 or newer and relatively modern np
 Start development:
 
 ```
-  $ npm install
-  $ npm start
+  $ yarn install
+  $ yarn start
 ```
 
 Parcel development server should watch your changes as you work and apply changes immediately. If
 you can't see your changes, removing parcel cache with `rm -rf .parcel-cache`, restaring Parcel and
 reloading page may help. Parcel doesn't watch for GraphQL schema changes, see Generating GraphQL
 types below.
+
+## Format
+
+```
+  $ yarn run format
+```
 
 ## Typechecking
 

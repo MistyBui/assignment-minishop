@@ -17,12 +17,9 @@ import { CartItem, Product } from 'types';
 import { ORDERS, ORDER_DETAILS, PRODUCTS } from '../constants';
 import { useCart } from '../context';
 import { getProductsQuery } from '../queries';
-import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { RootStackParamList } from 'App';
+import { navigate } from '../App';
 
 const Products: FC = (): JSX.Element => {
-  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
-
   const { loading, data } = useQuery<GetProductsQuery>(getProductsQuery);
   const { cart } = useCart();
 
@@ -51,9 +48,7 @@ const Products: FC = (): JSX.Element => {
   return (
     <View style={styles.wrapper}>
       <View style={styles.topButtons}>
-        <TouchableOpacity
-          activeOpacity={0.5}
-          onPress={() => navigation.navigate(ORDERS)}>
+        <TouchableOpacity activeOpacity={0.5} onPress={() => navigate(ORDERS)}>
           <Image
             style={styles.iconButton}
             source={require('../../assets/images/history.png')}
@@ -62,7 +57,7 @@ const Products: FC = (): JSX.Element => {
         <View style={styles.space} />
         <TouchableOpacity
           activeOpacity={0.5}
-          onPress={() => navigation.navigate(ORDER_DETAILS)}>
+          onPress={() => navigate(ORDER_DETAILS)}>
           <Image
             style={styles.iconButton}
             source={require('../../assets/images/shopping-bag.png')}
