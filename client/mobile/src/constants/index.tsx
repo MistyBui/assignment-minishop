@@ -24,3 +24,6 @@ export type ORDERS = typeof ORDERS;
 
 export const ORDER_DETAILS = 'OrderDetails';
 export type ORDER_DETAILS = typeof ORDER_DETAILS;
+
+export const BACK_BUTTON = '< Back';
+export type BACK_BUTTON = typeof BACK_BUTTON;

@@ -1,7 +1,7 @@
 import React, { PropsWithChildren, useCallback, useState } from 'react';
 import { Button, Text, StyleSheet, View } from 'react-native';
 
-import { PRODUCTS } from '../constants';
+import { BACK_BUTTON, PRODUCTS } from '../constants';
 import { navigationRef } from '../App';
 import { useFocusEffect } from '@react-navigation/native';
 
@@ -21,7 +21,7 @@ const Header = ({ children }: PropsWithChildren): JSX.Element => {
   const renderBackButton = (): JSX.Element => (
     <View style={styles.goBack}>
       <Button
-        title={'< Back'}
+        title={BACK_BUTTON}
         onPress={() => navigationRef.current?.goBack()}
       />
     </View>

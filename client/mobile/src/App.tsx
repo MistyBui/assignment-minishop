@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Products from './screens/Products';
@@ -19,9 +19,9 @@ export type RootStackParamList = {
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-export const navigationRef = React.createRef<NavigationContainerRef<any>>();
+export const navigationRef = createRef<NavigationContainerRef<any>>();
 
-export const navigate = (name: string, params?: any) => {
+export const navigate = (name: string, params?: object) => {
   navigationRef.current?.navigate(name, params);
 };
 
@@ -30,7 +30,7 @@ const App = () => {
     <CartProvider>
       <NavigationContainer independent={true} ref={navigationRef}>
         <Stack.Navigator
-          initialRouteName='Products'
+          initialRouteName={PRODUCTS}
           screenOptions={{ headerShown: false }}>
           <Stack.Screen name={PRODUCTS} component={Products} />
           <Stack.Screen name={ORDERS} component={Orders} />
